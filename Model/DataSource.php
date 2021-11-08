@@ -3,24 +3,60 @@
 declare(strict_types=1);
 
 class DataSource {
-    private mysqli $conn;
+
+    private string $servername;
+    private string $username;
+    private string $password;
+    private string $database;
+
 
     public function __construct() {
-        $servername = "localhost";
-        $username = "root";
-        $password = "parolaMariaDB";
-        $database = "test";
-        $this->conn = new mysqli($servername, $username, $password, $database);
-        if ($this->conn->connect_error) {
-            die("Connection failed: " . $this->conn->connect_error);
-        }
-        echo "Connected successfully";
+        $this->servername = "localhost";
+        $this->username = "root";
+        $this->password = "parolaMariaDB";
+        $this->database = "test";
     }
 
-    public function getCustomers() {
+    public function getCustomers(): array {
         $sql = "SELECT * FROM customer";
-        $result = $this->conn->query($sql);
-        $this->conn->close();
+        return $this->getRows($sql);
+    }
+
+    public function getCustomerGroup() {
+        $sql = "SELECT * FROM customer_group";
+        return $this->runScript($sql);
+    }
+
+    private function runScript(string $sql) {
+        $conn = new mysqli($this->servername, $this->username, $this->password, $this->database);
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+        }
+        $result = $conn->query($sql);
+
+        // close connection
+        $conn->close();
+
         return $result;
+    }
+
+    private function getRows(string $sql): array {
+        $conn = new mysqli($this->servername, $this->username, $this->password, $this->database);
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+        }
+        $result = $conn->query($sql);
+        $rows = [];
+        while ($row = $result->fetch_array()) {
+            array_push($rows, $row);
+        }
+
+        // free result set
+        $result->close();
+
+        // close connection
+        $conn->close();
+
+        return $rows;
     }
 }
