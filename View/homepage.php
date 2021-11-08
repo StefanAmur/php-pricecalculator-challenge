@@ -4,7 +4,6 @@ Anything complex should be calculated in the model -->
 <section class="main">
     <h1 class="title">Hello from homepage</h1>
 
-
     <p>Put your content here.</p>
     <?php var_dump($customers); ?>
 </section>
