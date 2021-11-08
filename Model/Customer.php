@@ -21,7 +21,6 @@ class Customer {
         $this->variableDiscount = $variableDiscount;
     }
 
-
     public function getId(): int {
         return $this->id;
     }

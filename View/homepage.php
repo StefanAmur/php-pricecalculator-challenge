@@ -6,5 +6,6 @@ Anything complex should be calculated in the model -->
 
 
     <p>Put your content here.</p>
+    <?php var_dump($customers); ?>
 </section>
 <?php require 'includes/footer.php' ?>
