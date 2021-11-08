@@ -1,6 +1,5 @@
-<?php require 'includes/header.php' ?>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
     <meta charset="utf-8">
@@ -13,4 +12,3 @@
 
 <body>
 
-    <?php require 'includes/footer.php' ?>
