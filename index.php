@@ -13,8 +13,6 @@ require 'Model/ProductLoader.php';
 require 'Model/CustomerGroupLoader.php';
 
 
-// require 'Model/CustomerGroupLoader.php';
-
 //include all your controllers here
 require 'Controller/HomepageController.php';
 
