@@ -13,8 +13,9 @@ Anything complex should be calculated in the model -->
             <?php
             if (isset($customers)) {
                 foreach ($customers as $key => $v) {
-                echo "<option value='{$v->getId()}'> {$v->getFirstName()}  {$v->getLastName()} </option>";
-            }}
+                    echo "<option value='{$v->getId()}'> {$v->getFirstName()}  {$v->getLastName()} </option>";
+                }
+            }
             ?>
         </select>
         <br><br>
@@ -26,8 +27,9 @@ Anything complex should be calculated in the model -->
                 <?php
                 if (isset($products)) {
                     foreach ($products as $key => $z) {
-                    echo "<option value='{$z->getId()}'> {$z->getName()} </option>";
-                }}
+                        echo "<option value='{$z->getId()}'> {$z->getName()} </option>";
+                    }
+                }
                 ?>
             </select>
             <br><br>
@@ -36,13 +38,13 @@ Anything complex should be calculated in the model -->
             <input type="submit" value="Submit" name="submit">
 
 
-    </form>
+        </form>
 
-    <?php if (isset($_POST['submit'])) {
-        if (isset($_POST['customerName'])) {
-            var_dump($_POST['customerName']);
-        }
-    }; ?>
+        <?php if (isset($_POST['submit'])) {
+            if (isset($_POST['customerName'])) {
+                var_dump($_POST['customerName']);
+            }
+        }; ?>
 
 
 

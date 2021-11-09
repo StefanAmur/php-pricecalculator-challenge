@@ -9,9 +9,11 @@ class HomepageController {
         $db = new DataSource();
         $customerLoader = new CustomerLoader($db);
         $productLoader = new ProductLoader($db);
+        $customerGroupLoader = new CustomerGroupLoader($db);
 
         $customers = $customerLoader->getCustomers();
         $products = $productLoader->getProducts();
+        $customerGroup = $customerGroupLoader->getCustomerGroup();
         //you should not echo anything inside your controller - only assign vars here
         // then the view will actually display them.
 
