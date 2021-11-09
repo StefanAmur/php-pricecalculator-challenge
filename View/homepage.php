@@ -11,14 +11,29 @@ Anything complex should be calculated in the model -->
         <select name="customerName">
 
             <?php
-            foreach ($customers as $key => $v) {
+            if (isset($customers)) {
+                foreach ($customers as $key => $v) {
                 echo "<option value='{$v->getId()}'> {$v->getFirstName()}  {$v->getLastName()} </option>";
-            }
+            }}
             ?>
         </select>
         <br><br>
 
-        <input type="submit" value="Submit" name="submit">
+        <form action="" method="post">
+            <label for="products">Choose a product</label>
+            <select name="productName">
+
+                <?php
+                if (isset($products)) {
+                    foreach ($products as $key => $z) {
+                    echo "<option value='{$z->getId()}'> {$z->getName()} </option>";
+                }}
+                ?>
+            </select>
+            <br><br>
+
+
+            <input type="submit" value="Submit" name="submit">
 
 
     </form>
