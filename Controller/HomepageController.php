@@ -22,6 +22,7 @@ class HomepageController {
                 // $selectedProduct = $products[intval($_POST['productName']) - 1];
                 $customerGroupLoader = new CustomerGroupLoader($db);
                 $customerGroups = $customerGroupLoader->getGroupBranch($selectedCustomer->getGroupId());
+                $customerName = $selectedCustomer->getFirstName() . " " . $selectedCustomer->getLastName();
                 $priceCalculator = new PriceCalculator();
                 // $result = $priceCalculator->getPrice($selectedCustomer, $selectedProduct, $customerGroups);
                 // var_dump($result);
@@ -52,19 +53,15 @@ class HomepageController {
             }
 
             if (isset($POST['productName'])) {
-                // var_dump($POST['productName']);
-                $selectedProduct = $products[intval($_POST['productName']) - 1];
-                // var_dump($selectedProduct->getPrice());
-                // var_dump($products);
-            }
-        };
-
-
-        if (isset($POST['productName'])) {
             $selectedProduct = $products[intval($_POST['productName']) - 1];
             $productName = $selectedProduct->getName();
             $productPrice = $selectedProduct->getPrice();
-        }
+
+            $priceCalculator = $productPrice - (($productPrice - array_sum($fixedDiscount)) * max($variableDiscount)/100);
+        }};
+
+
+
         //you should not echo anything inside your controller - only assign vars here
         // then the view will actually display them.
 
