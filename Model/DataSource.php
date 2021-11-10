@@ -11,10 +11,10 @@ class DataSource {
 
 
     public function __construct() {
-        $this->servername = "Becode.local";
-        $this->username = "Becode";
-        $this->password = "Becode";
-        $this->database = "classicmodels";
+        $this->servername = "localhost";
+        $this->username = "root";
+        $this->password = "parolaMariaDB";
+        $this->database = "test";
     }
 
     public function getCustomers(): array {
@@ -27,9 +27,14 @@ class DataSource {
         return $this->getRows($sql);
     }
 
-    public function getCustomerGroup() {
-        $sql = "SELECT * FROM customer_group";
-        return $this->runScript($sql);
+    // public function getCustomerGroups() {
+    //     $sql = "SELECT * FROM customer_group";
+    //     return $this->runScript($sql);
+    // }
+
+    public function getCustomerGroupById(int $id) {
+        $sql = "SELECT * FROM customer_group WHERE id = {$id}";
+        return $this->getRows($sql)[0];
     }
 
     private function runScript(string $sql) {

@@ -9,11 +9,19 @@ class HomepageController {
         $db = new DataSource();
         $customerLoader = new CustomerLoader($db);
         $productLoader = new ProductLoader($db);
-        $customerGroupLoader = new CustomerGroupLoader($db);
 
         $customers = $customerLoader->getCustomers();
         $products = $productLoader->getProducts();
-        $customerGroup = $customerGroupLoader->getCustomerGroup();
+
+        if (isset($POST['submit'])) {
+            if (isset($POST['customerName'])) {
+                $selectedCustomer = $customers[intval($_POST['customerName']) - 1];
+                $customerGroupLoader = new CustomerGroupLoader($db);
+                $customerGroups = $customerGroupLoader->getGroupBranch($selectedCustomer->getGroupId());
+                $priceCalculator = new PriceCalculator();
+                //$result = $priceCalculator->getPrice($selectedCustomer, $product, $customerGroups);
+            }
+        };
         //you should not echo anything inside your controller - only assign vars here
         // then the view will actually display them.
 
