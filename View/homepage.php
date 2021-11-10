@@ -42,9 +42,21 @@ Anything complex should be calculated in the model -->
 
     <?php
     if (isset($_POST['submit'])) {
+<<<<<<< Updated upstream
 //        var_dump($selectedCustomer);
 //        var_dump($customerGroups);
 //          var_dump($productName);
+=======
+        var_dump($selectedCustomer);
+        var_dump($fixedDiscount);
+        var_dump(array_sum($fixedDiscount));
+        var_dump($variableDiscount);
+        var_dump(max($variableDiscount));
+        var_dump($customerGroups);
+
+        // get private value for fixed discount on first element of array
+        var_dump($customerGroups['0']->getFixedDiscount());
+>>>>>>> Stashed changes
     }
 
     ?>
