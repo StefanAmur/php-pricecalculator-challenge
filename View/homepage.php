@@ -3,9 +3,6 @@
 Anything complex should be calculated in the model -->
 <section class="main">
     <h1 class="title">Hello from homepage</h1>
-
-
-
     <form action="" method="post">
         <label for="customers">Choose a customer</label>
         <select name="customerName">
@@ -32,19 +29,27 @@ Anything complex should be calculated in the model -->
         <br><br>
         <input type="submit" value="Submit" name="submit">
     </form>
-    <p>You have chosen:</p>
-    <br><br>
-    <span class="customerName"></span>
-    <br><br>
-    <span class="productName"><?php if (isset($_POST['submit'])) {echo $productName;} ?></span>
-    <br>
-    <span class="productPrice"><?php if (isset($_POST['submit'])) {echo $productPrice;} ?></span>
+    <container>
+        <p>You have chosen:</p>
+        <?php if (isset($_POST['submit'])) { ?>
+        <div>
+            <span class="customerName"><?php echo $customerName;?></span>
+            <span class="productName"><?php echo $productName; ?></span>
+            <span class="productPrice"><?php echo $productPrice/100 . "€"; ?></span>
+        </div>
+    </container>
+        <p>Price after discount:</p>
+        <span><?php echo round($priceCalculator/100, 2) . "€";?></span>
+
+<?php }?>
 
     <?php
     if (isset($_POST['submit'])) {
         // var_dump($selectedCustomer);
         // var_dump($customerGroups);
         // var_dump($productName);
+//        var_dump($fixedDiscount);
+//        var_dump($variableDiscount);
     }
 
     ?>
