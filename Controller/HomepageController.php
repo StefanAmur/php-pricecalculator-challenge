@@ -53,12 +53,13 @@ class HomepageController {
             }
 
             if (isset($POST['productName'])) {
-            $selectedProduct = $products[intval($_POST['productName']) - 1];
-            $productName = $selectedProduct->getName();
-            $productPrice = $selectedProduct->getPrice();
-
-            $priceCalculator = $productPrice - (($productPrice - array_sum($fixedDiscount)) * max($variableDiscount)/100);
-        }};
+                $selectedProduct = $products[intval($_POST['productName']) - 1];
+                $productName = $selectedProduct->getName();
+                $productPrice = $selectedProduct->getPrice();
+                $productPriceAfterFixedDiscount = round(($productPrice - array_sum($fixedDiscount)) / 100, 2);
+                $finalPrice = round($productPriceAfterFixedDiscount * max($variableDiscount) / 100, 2);
+            }
+        };
 
 
 
