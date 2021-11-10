@@ -24,8 +24,4 @@ class Product {
     public function getPrice(): int {
         return $this->price;
     }
-
-    public function productById (): array {
-
-    }
 }
