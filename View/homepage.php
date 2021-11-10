@@ -4,7 +4,7 @@ Anything complex should be calculated in the model -->
 <section class="main">
     <h1 class="title">Hello from homepage</h1>
 
-    <p>Put your content here.</p>
+
 
     <form action="" method="post">
         <label for="customers">Choose a customer</label>
@@ -32,11 +32,19 @@ Anything complex should be calculated in the model -->
         <br><br>
         <input type="submit" value="Submit" name="submit">
     </form>
+    <p>You have chosen:</p>
+    <br><br>
+    <span class="customerName"></span>
+    <br><br>
+    <span class="productName"><?php if(isset($_POST['submit'])) {echo $productName;}?></span>
+    <br>
+    <span class="productPrice"><?php if(isset($_POST['submit'])) {echo $productPrice;}?></span>
 
     <?php
     if (isset($_POST['submit'])) {
-        var_dump($selectedCustomer);
-        var_dump($customerGroups);
+//        var_dump($selectedCustomer);
+//        var_dump($customerGroups);
+//          var_dump($productName);
     }
 
     ?>

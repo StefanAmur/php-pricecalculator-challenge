@@ -11,10 +11,10 @@ class DataSource {
 
 
     public function __construct() {
-        $this->servername = "localhost";
-        $this->username = "root";
-        $this->password = "parolaMariaDB";
-        $this->database = "test";
+        $this->servername = "Becode.local";
+        $this->username = "Becode";
+        $this->password = "Becode";
+        $this->database = "classicmodels";
     }
 
     public function getCustomers(): array {

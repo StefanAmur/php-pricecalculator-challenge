@@ -22,6 +22,13 @@ class HomepageController {
                 //$result = $priceCalculator->getPrice($selectedCustomer, $product, $customerGroups);
             }
         };
+
+
+            if (isset($POST['productName'])) {
+                $selectedProduct = $products[intval($_POST['productName'])-1];
+                $productName = $selectedProduct->getName();
+                $productPrice = $selectedProduct->getPrice();
+            }
         //you should not echo anything inside your controller - only assign vars here
         // then the view will actually display them.
 
