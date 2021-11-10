@@ -9,7 +9,6 @@ Anything complex should be calculated in the model -->
     <form action="" method="post">
         <label for="customers">Choose a customer</label>
         <select name="customerName">
-
             <?php
             if (isset($customers)) {
                 foreach ($customers as $key => $v) {
@@ -20,34 +19,26 @@ Anything complex should be calculated in the model -->
         </select>
         <br><br>
 
-        <form action="" method="post">
-            <label for="products">Choose a product</label>
-            <select name="productName">
-
-                <?php
-                if (isset($products)) {
-                    foreach ($products as $key => $z) {
-                        echo "<option value='{$z->getId()}'> {$z->getName()} </option>";
-                    }
+        <label for="products">Choose a product</label>
+        <select name="productName">
+            <?php
+            if (isset($products)) {
+                foreach ($products as $key => $z) {
+                    echo "<option value='{$z->getId()}'> {$z->getName()} </option>";
                 }
-                ?>
-            </select>
-            <br><br>
-
-
-            <input type="submit" value="Submit" name="submit">
-
-
-        </form>
-
-        <?php if (isset($_POST['submit'])) {
-            if (isset($_POST['customerName'])) {
-                var_dump($_POST['customerName']);
             }
-        }; ?>
+            ?>
+        </select>
+        <br><br>
+        <input type="submit" value="Submit" name="submit">
+    </form>
 
+    <?php
+    if (isset($_POST['submit'])) {
+        var_dump($selectedCustomer);
+        var_dump($customerGroups);
+    }
 
-
-
+    ?>
 </section>
 <?php require 'includes/footer.php' ?>
