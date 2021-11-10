@@ -9,21 +9,6 @@ class CustomerGroupLoader {
         $this->db = $db;
     }
 
-    // public function getCustomerGroup(): array {
-    //     $result = [];
-    //     $response = $this->db->getCustomerGroups();
-    //     foreach ($response as $key => $v) {
-    //         array_push($result, new CustomerGroup(
-    //             intval($v['id']),
-    //             $v['name'],
-    //             is_null($v['parent_id']) ? $v['parent_id'] : intval($v['parent_id']),
-    //             is_null($v['fixed_discount']) ? $v['fixed_discount'] : intval($v['fixed_discount']),
-    //             is_null($v['variable_discount']) ? $v['variable_discount'] : intval($v['variable_discount'])
-    //         ));
-    //     }
-    //     return $result;
-    // }
-
     public function getGroupBranch(int $groupId): array {
         $result = [];
         $reachedRoot = false;

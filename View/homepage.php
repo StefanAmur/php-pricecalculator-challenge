@@ -36,15 +36,15 @@ Anything complex should be calculated in the model -->
     <br><br>
     <span class="customerName"></span>
     <br><br>
-    <span class="productName"><?php if(isset($_POST['submit'])) {echo $productName;}?></span>
+    <span class="productName"><?php if (isset($_POST['submit'])) {echo $productName;} ?></span>
     <br>
-    <span class="productPrice"><?php if(isset($_POST['submit'])) {echo $productPrice;}?></span>
+    <span class="productPrice"><?php if (isset($_POST['submit'])) {echo $productPrice;} ?></span>
 
     <?php
     if (isset($_POST['submit'])) {
-//        var_dump($selectedCustomer);
-//        var_dump($customerGroups);
-//          var_dump($productName);
+        // var_dump($selectedCustomer);
+        // var_dump($customerGroups);
+        // var_dump($productName);
     }
 
     ?>

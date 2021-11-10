@@ -13,22 +13,58 @@ class HomepageController {
         $customers = $customerLoader->getCustomers();
         $products = $productLoader->getProducts();
 
+        $fixedDiscount = [];
+        $variableDiscount = [];
+
         if (isset($POST['submit'])) {
             if (isset($POST['customerName'])) {
                 $selectedCustomer = $customers[intval($_POST['customerName']) - 1];
+                // $selectedProduct = $products[intval($_POST['productName']) - 1];
                 $customerGroupLoader = new CustomerGroupLoader($db);
                 $customerGroups = $customerGroupLoader->getGroupBranch($selectedCustomer->getGroupId());
                 $priceCalculator = new PriceCalculator();
-                //$result = $priceCalculator->getPrice($selectedCustomer, $product, $customerGroups);
+                // $result = $priceCalculator->getPrice($selectedCustomer, $selectedProduct, $customerGroups);
+                // var_dump($result);
+
+                // check if the customer has a fixed discount
+                if ($selectedCustomer->getFixedDiscount() != null) {
+                    array_push($fixedDiscount, $selectedCustomer->getFixedDiscount());
+                }
+
+                // add the fixed discounts from the groups
+                foreach ($customerGroups as $key => $value) {
+                    if ($value->getFixedDiscount() != null) {
+                        array_push($fixedDiscount, $value->getFixedDiscount());
+                    }
+                }
+
+                // check if the customer has a variable discount
+                if ($selectedCustomer->getVariableDiscount() != null) {
+                    array_push($variableDiscount, $selectedCustomer->getVariableDiscount());
+                }
+
+                // add the variable discounts from the groups
+                foreach ($customerGroups as $key => $value) {
+                    if ($value->getVariableDiscount() != null) {
+                        array_push($variableDiscount, $value->getVariableDiscount());
+                    }
+                }
+            }
+
+            if (isset($POST['productName'])) {
+                // var_dump($POST['productName']);
+                $selectedProduct = $products[intval($_POST['productName']) - 1];
+                // var_dump($selectedProduct->getPrice());
+                // var_dump($products);
             }
         };
 
 
-            if (isset($POST['productName'])) {
-                $selectedProduct = $products[intval($_POST['productName'])-1];
-                $productName = $selectedProduct->getName();
-                $productPrice = $selectedProduct->getPrice();
-            }
+        if (isset($POST['productName'])) {
+            $selectedProduct = $products[intval($_POST['productName']) - 1];
+            $productName = $selectedProduct->getName();
+            $productPrice = $selectedProduct->getPrice();
+        }
         //you should not echo anything inside your controller - only assign vars here
         // then the view will actually display them.
 
