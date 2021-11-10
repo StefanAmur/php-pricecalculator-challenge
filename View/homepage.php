@@ -5,7 +5,8 @@ Anything complex should be calculated in the model -->
     <h1 class="title">Hello from homepage</h1>
     <form action="" method="post">
         <label for="customers">Choose a customer</label>
-        <select name="customerName">
+        <select name="customerName" required>
+            <option value="" disabled selected hidden>Select a customer</option>
             <?php
             if (isset($customers)) {
                 foreach ($customers as $key => $v) {
@@ -17,7 +18,8 @@ Anything complex should be calculated in the model -->
         <br><br>
 
         <label for="products">Choose a product</label>
-        <select name="productName">
+        <select name="productName" required>
+            <option value="" disabled selected hidden>Select a product</option>
             <?php
             if (isset($products)) {
                 foreach ($products as $key => $z) {
@@ -29,29 +31,38 @@ Anything complex should be calculated in the model -->
         <br><br>
         <input type="submit" value="Submit" name="submit">
     </form>
-    <container>
-        <p>You have chosen:</p>
-        <?php if (isset($_POST['submit'])) { ?>
-        <div>
-            <span class="customerName"><?php echo $customerName;?></span>
-            <span class="productName"><?php echo $productName; ?></span>
-            <span class="productPrice"><?php echo $productPrice/100 . "€"; ?></span>
-        </div>
-    </container>
-        <p>Price after discount:</p>
-        <span><?php echo round($priceCalculator/100, 2) . "€";?></span>
 
-<?php }?>
+    <?php if (isset($_POST['submit'])) { ?>
+        <table>
+            <tbody>
+                <tr>
+                    <td>Customer name</td>
+                    <td><?php echo $customerName; ?></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Product</td>
+                    <td><?php echo $productName; ?></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Standard price</td>
+                    <td><?php echo $productPrice / 100 . " &#128;"; ?></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Price after fixed discount</td>
+                    <td><?php echo $productPriceAfterFixedDiscount . " &#128;"; ?></td>
+                    <td><?php echo "- " . array_sum($fixedDiscount) / 100 . " &#128;"; ?></td>
+                </tr>
+                <tr>
+                    <td>Final price (after var discount)</td>
+                    <td><?php echo $finalPrice . " " . "&#128;"; ?></td>
+                    <td><?php echo "- " . max($variableDiscount) . " &#37;"; ?></td>
+                </tr>
+            </tbody>
+        </table>
+    <?php } ?>
 
-    <?php
-    if (isset($_POST['submit'])) {
-        // var_dump($selectedCustomer);
-        // var_dump($customerGroups);
-        // var_dump($productName);
-//        var_dump($fixedDiscount);
-//        var_dump($variableDiscount);
-    }
-
-    ?>
 </section>
 <?php require 'includes/footer.php' ?>
