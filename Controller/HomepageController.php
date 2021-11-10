@@ -19,12 +19,12 @@ class HomepageController {
         if (isset($POST['submit'])) {
             if (isset($POST['customerName'])) {
                 $selectedCustomer = $customers[intval($_POST['customerName']) - 1];
-                $selectedProduct = $products[intval($_POST['productName']) - 1];
+                // $selectedProduct = $products[intval($_POST['productName']) - 1];
                 $customerGroupLoader = new CustomerGroupLoader($db);
                 $customerGroups = $customerGroupLoader->getGroupBranch($selectedCustomer->getGroupId());
                 $priceCalculator = new PriceCalculator();
-                $result = $priceCalculator->getPrice($selectedCustomer, $selectedProduct, $customerGroups);
-                var_dump($result);
+                // $result = $priceCalculator->getPrice($selectedCustomer, $selectedProduct, $customerGroups);
+                // var_dump($result);
 
                 // check if the customer has a fixed discount
                 if ($selectedCustomer->getFixedDiscount() != null) {
