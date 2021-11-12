@@ -2,10 +2,9 @@
 <!-- this is the view, try to put only simple if's and loops here.
 Anything complex should be calculated in the model -->
 <section class="main">
-    <h1 class="title">Hello from homepage</h1>
     <form action="" method="post">
-        <label for="customers">Choose a customer</label>
-        <select name="customerName" required>
+        <label for="customers" hidden></label>
+        <select name="customerName" required autofocus>
             <option value="" disabled selected hidden>Select a customer</option>
             <?php
             if (isset($customers)) {
@@ -17,7 +16,7 @@ Anything complex should be calculated in the model -->
         </select>
         <br><br>
 
-        <label for="products">Choose a product</label>
+        <label for="products" hidden></label>
         <select name="productName" required>
             <option value="" disabled selected hidden>Select a product</option>
             <?php
@@ -29,10 +28,13 @@ Anything complex should be calculated in the model -->
             ?>
         </select>
         <br><br>
+        <label for="quantity">Quantity</label>
+        <input type="number" name="quantity" max="1000" min="1" value="1" required>
         <input type="submit" value="Submit" name="submit">
     </form>
 
     <?php if (isset($_POST['submit'])) { ?>
+
         <table>
             <tbody>
                 <tr>
@@ -46,20 +48,34 @@ Anything complex should be calculated in the model -->
                     <td></td>
                 </tr>
                 <tr>
-                    <td>Standard price</td>
+                    <td>Quantity</td>
+                    <td><?php echo $quantity; ?></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Standard price&#47;unit</td>
                     <td><?php echo $productPrice / 100 . " &#128;"; ?></td>
                     <td></td>
                 </tr>
                 <tr>
-                    <td>Price after fixed discount</td>
-                    <td><?php echo $productPriceAfterFixedDiscount . " &#128;"; ?></td>
+                    <td>Price&#47;unit after fixed discount</td>
+                    <td><?php echo $priceAfterFixedDiscount . " &#128;"; ?></td>
                     <td><?php echo "- " . array_sum($fixedDiscount) / 100 . " &#128;"; ?></td>
                 </tr>
                 <tr>
-                    <td>Final price (after var discount)</td>
-                    <td><?php echo $finalPrice . " " . "&#128;"; ?></td>
-                    <td><?php echo "- " . max($variableDiscount) . " &#37;"; ?></td>
+                    <td>Price&#47;unit after variable discount</td>
+                    <td><?php echo $priceAfterVarDiscount . " &#128;"; ?></td>
+                    <td><?php echo "- " . max($variableDiscount)  . " &#37;"; ?></td>
                 </tr>
+                <tr class=<?php echo $classHidden ?>>
+                    <td>Extra discount applied</td>
+                    <td><?php echo $extraDiscount . " &#37;"; ?></td>
+                </tr>
+                <tr>
+                    <td>Total price</td>
+                    <td><?php echo $finalPrice . " &#128;"; ?></td>
+                </tr>
+
             </tbody>
         </table>
     <?php } ?>
