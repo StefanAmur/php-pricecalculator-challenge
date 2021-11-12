@@ -11,3 +11,9 @@
 </head>
 
 <body>
+    <header class="header">
+        <div class="promo">
+            <p class="promo-text">10 &#37; discount on orders with 40 or more pieces ordered, 20 &#37 for 100 or more</p>
+        </div>
+        <h1 class="header-title">Price calculator</h1>
+    </header>

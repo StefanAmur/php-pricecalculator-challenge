@@ -2,8 +2,6 @@
 
 declare(strict_types=1);
 
-session_start();
-
 class HomepageController {
     //render function with both $_GET and $_POST vars available if it would be needed.
     public function render(array $GET, array $POST) {
@@ -54,18 +52,28 @@ class HomepageController {
                 }
             }
 
-            if (isset($POST['productName'])) {
-            $selectedProduct = $products[intval($_POST['productName']) - 1];
-            $productName = $selectedProduct->getName();
-            $productPrice = $selectedProduct->getPrice();
-
-            $priceCalculator = $productPrice - (($productPrice - array_sum($fixedDiscount)) * max($variableDiscount)/100);
-        }
-            $_SESSION['customerName'] = $customerName;
-            $_SESSION['productName'] = $productName;
+            if (isset($POST['productName']) && isset($POST['quantity'])) {
+                $selectedProduct = $products[intval($_POST['productName']) - 1];
+                $quantity = intval($POST['quantity']);
+                $extraDiscount = 0;
+                $productName = $selectedProduct->getName();
+                $productPrice = $selectedProduct->getPrice();
+                $classHidden = "row-hidden";
+                $priceAfterFixedDiscount = round(($productPrice - array_sum($fixedDiscount)) / 100, 2);
+                $priceAfterVarDiscount = round($priceAfterFixedDiscount - (max($variableDiscount) * $priceAfterFixedDiscount) / 100, 2);
+                if ($quantity < 40) {
+                    $finalPrice = $priceAfterVarDiscount * $quantity;
+                } elseif ($quantity >= 40 && $quantity < 100) {
+                    $finalPrice = round($priceAfterVarDiscount - (10 * $priceAfterVarDiscount) / 100, 2) * $quantity;
+                    $classHidden = "";
+                    $extraDiscount = 10;
+                } else {
+                    $finalPrice = round($priceAfterVarDiscount - (20 * $priceAfterVarDiscount) / 100, 2) * $quantity;
+                    $classHidden = "";
+                    $extraDiscount = 20;
+                }
+            };
         };
-
-
 
 
 
