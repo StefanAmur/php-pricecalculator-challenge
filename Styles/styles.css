@@ -11,3 +11,37 @@ body {
 .row-hidden {
   display: none;
 }
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 3rem;
+}
+
+.promo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-transform: uppercase;
+  text-align: center;
+  letter-spacing: 0.6px;
+  background-color: rgb(233, 52, 52);
+  height: 3rem;
+  width: 100vw;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+form {
+  margin-bottom: 3rem;
+}
+
+select {
+  width: 16rem;
+}
