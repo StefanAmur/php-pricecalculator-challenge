@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+session_start();
+
 class HomepageController {
     //render function with both $_GET and $_POST vars available if it would be needed.
     public function render(array $GET, array $POST) {
@@ -58,7 +60,12 @@ class HomepageController {
             $productPrice = $selectedProduct->getPrice();
 
             $priceCalculator = $productPrice - (($productPrice - array_sum($fixedDiscount)) * max($variableDiscount)/100);
-        }};
+        }
+            $_SESSION['customerName'] = $customerName;
+            $_SESSION['productName'] = $productName;
+        };
+
+
 
 
 
