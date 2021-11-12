@@ -52,13 +52,27 @@ class HomepageController {
                 }
             }
 
-            if (isset($POST['productName'])) {
+            if (isset($POST['productName']) && isset($POST['quantity'])) {
                 $selectedProduct = $products[intval($_POST['productName']) - 1];
+                $quantity = intval($POST['quantity']);
+                $extraDiscount = 0;
                 $productName = $selectedProduct->getName();
                 $productPrice = $selectedProduct->getPrice();
-                $productPriceAfterFixedDiscount = round(($productPrice - array_sum($fixedDiscount)) / 100, 2);
-                $finalPrice = round($productPriceAfterFixedDiscount * max($variableDiscount) / 100, 2);
-            }
+                $classHidden = "row-hidden";
+                $priceAfterFixedDiscount = round(($productPrice - array_sum($fixedDiscount)) / 100, 2);
+                $priceAfterVarDiscount = round($priceAfterFixedDiscount - (max($variableDiscount) * $priceAfterFixedDiscount) / 100, 2);
+                if ($quantity < 40) {
+                    $finalPrice = $priceAfterVarDiscount * $quantity;
+                } elseif ($quantity >= 40 && $quantity < 100) {
+                    $finalPrice = round($priceAfterVarDiscount - (10 * $priceAfterVarDiscount) / 100, 2) * $quantity;
+                    $classHidden = "";
+                    $extraDiscount = 10;
+                } else {
+                    $finalPrice = round($priceAfterVarDiscount - (20 * $priceAfterVarDiscount) / 100, 2) * $quantity;
+                    $classHidden = "";
+                    $extraDiscount = 20;
+                }
+            };
         };
 
 

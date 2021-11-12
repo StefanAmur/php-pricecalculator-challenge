@@ -7,3 +7,7 @@
 body {
   background-color: lightyellow;
 }
+
+.row-hidden {
+  display: none;
+}
