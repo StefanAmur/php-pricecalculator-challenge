@@ -14,7 +14,6 @@ Anything complex should be calculated in the model -->
             }
             ?>
         </select>
-        <br><br>
 
         <label for="products" hidden></label>
         <select name="productName" required>
@@ -27,14 +26,15 @@ Anything complex should be calculated in the model -->
             }
             ?>
         </select>
-        <br><br>
-        <label for="quantity">Quantity</label>
-        <input type="number" name="quantity" max="1000" min="1" value="1" required>
-        <input type="submit" value="Submit" name="submit">
+        <div class="qty-cont">
+            <label for="quantity">Quantity</label>
+            <input type="number" name="quantity" max="1000" min="1" value="1" required>
+        </div>
+
+        <input class="calc-btn" type="submit" value="Calculate" name="submit">
     </form>
 
     <?php if (isset($_POST['submit'])) { ?>
-
         <table>
             <tbody>
                 <tr>
@@ -79,6 +79,5 @@ Anything complex should be calculated in the model -->
             </tbody>
         </table>
     <?php } ?>
-
+    <?php require 'includes/footer.php' ?>
 </section>
-<?php require 'includes/footer.php' ?>
