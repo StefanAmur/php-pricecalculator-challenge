@@ -5,7 +5,6 @@ declare(strict_types=1);
 class HomepageController {
     //render function with both $_GET and $_POST vars available if it would be needed.
     public function render(array $GET, array $POST) {
-        //this is just example code, you can remove the line below
         $db = new DataSource();
         $customerLoader = new CustomerLoader($db);
         $productLoader = new ProductLoader($db);
@@ -25,7 +24,6 @@ class HomepageController {
                 $customerName = $selectedCustomer->getFirstName() . " " . $selectedCustomer->getLastName();
                 $priceCalculator = new PriceCalculator();
                 // $result = $priceCalculator->getPrice($selectedCustomer, $selectedProduct, $customerGroups);
-                // var_dump($result);
 
                 // check if the customer has a fixed discount
                 if ($selectedCustomer->getFixedDiscount() != null) {
@@ -74,9 +72,6 @@ class HomepageController {
                 }
             };
         };
-
-
-
         //you should not echo anything inside your controller - only assign vars here
         // then the view will actually display them.
 

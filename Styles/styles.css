@@ -3,9 +3,12 @@
   padding: 0;
   box-sizing: border-box;
 }
-/* testing only */
+
 body {
   background-color: lightyellow;
+  font-family: 'Roboto Mono', monospace;
+  position: relative;
+  min-height: 100vh;
 }
 
 .row-hidden {
@@ -16,8 +19,12 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1rem;
+  gap: 2rem;
   margin-bottom: 3rem;
+}
+
+.header-title {
+  text-align: center;
 }
 
 .promo {
@@ -28,7 +35,7 @@ body {
   text-align: center;
   letter-spacing: 0.6px;
   background-color: rgb(233, 52, 52);
-  height: 3rem;
+  min-height: 3rem;
   width: 100vw;
 }
 
@@ -36,12 +43,75 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding-bottom: 3rem;
 }
 
 form {
   margin-bottom: 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.6rem;
+}
+
+input {
+  font-family: 'Roboto Mono', monospace;
+  height: 2.2rem;
+}
+
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+  width: 3rem;
 }
 
 select {
   width: 16rem;
+  height: 2.2rem;
+  font-family: 'Roboto Mono', monospace;
+}
+
+.qty-cont {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.calc-btn {
+  width: 16rem;
+}
+
+.floating-label {
+  position: relative;
+  pointer-events: none;
+  left: -100px;
+  top: 0;
+  transition: 0.2s ease all;
+}
+
+.footer-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  background-color: rgb(189, 189, 189);
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  min-height: 3rem;
+}
+
+.link,
+.footer-span,
+.text {
+  color: #080046;
+  font-size: 1.2rem;
+}
+
+.link {
+  text-decoration: none;
+  text-transform: uppercase;
+  cursor: pointer;
 }
